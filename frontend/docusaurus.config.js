@@ -20,18 +20,18 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://YOUR-USERNAME.github.io',
+  url: 'https://foundations-of-physical-ai-and-huma.vercel.app/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/AI-in-Motion---Foundations-of-Physical-AI-and-Humanoid-Robotics/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'YOUR-USERNAME', // Usually your GitHub org/user name.
-  projectName: 'AI-in-Motion---Foundations-of-Physical-AI-and-Humanoid-Robotics', // Usually your repo name.
+  // organizationName: 'YOUR-USERNAME', // Usually your GitHub org/user name.
+  // projectName: 'AI-in-Motion---Foundations-of-Physical-AI-and-Humanoid-Robotics', // Usually your repo name.
 
   onBrokenLinks: 'warn',
-  deploymentBranch: 'gh-pages',
+  // deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
   // Even if you don't use internationalization, you can use this field to set
