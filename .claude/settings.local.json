@@ -4,7 +4,8 @@
       "Bash(git config:*)",
       "SlashCommand(/sp.constitution)",
       "Bash(git fetch:*)",
-      "Bash(powershell.exe:*)"
+      "Bash(powershell.exe:*)",
+      "WebFetch(domain:mahishahzad-textbook.hf.space)"
     ]
   }
 }
