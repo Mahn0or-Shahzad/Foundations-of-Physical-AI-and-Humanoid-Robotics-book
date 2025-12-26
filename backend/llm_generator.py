@@ -15,16 +15,25 @@ class LLMGenerator:
     """Manages OpenAI chat completions for answer generation"""
 
     def __init__(self):
-        """Initialize OpenAI client"""
+        """Initialize OpenAI/OpenRouter client"""
         self.openai_api_key = os.getenv('OPENAI_API_KEY')
         if not self.openai_api_key or self.openai_api_key == 'your_free_openai_api_key':
             raise ValueError("OPENAI_API_KEY not configured in .env file")
 
-        self.client = OpenAI(api_key=self.openai_api_key)
-
-        # Use gpt-4o-mini for cost-effective, high-quality responses
-        # Free tier: $5 credit, ~$0.0015 per 1K input tokens, ~$0.006 per 1K output tokens
-        self.model = os.getenv('OPENAI_CHAT_MODEL', 'gpt-4o-mini')
+        # Check if using OpenRouter (key starts with sk-or-)
+        if self.openai_api_key.startswith('sk-or-'):
+            print("  Detected OpenRouter API key")
+            self.client = OpenAI(
+                api_key=self.openai_api_key,
+                base_url="https://openrouter.ai/api/v1"
+            )
+            # OpenRouter model name (you can change this)
+            self.model = os.getenv('OPENAI_CHAT_MODEL', 'openai/gpt-4o-mini')
+        else:
+            print("  Detected OpenAI API key")
+            self.client = OpenAI(api_key=self.openai_api_key)
+            # Use gpt-4o-mini for cost-effective, high-quality responses
+            self.model = os.getenv('OPENAI_CHAT_MODEL', 'gpt-4o-mini')
 
         print(f"✓ LLMGenerator initialized (model: {self.model})")
 

@@ -17,14 +17,25 @@ class EmbeddingsManager:
     """Manages embeddings generation and vector store operations"""
 
     def __init__(self):
-        """Initialize OpenAI client and Qdrant client"""
+        """Initialize OpenAI/OpenRouter client and Qdrant client"""
         # OpenAI configuration
         self.openai_api_key = os.getenv('OPENAI_API_KEY')
         if not self.openai_api_key or self.openai_api_key == 'your_free_openai_api_key':
             raise ValueError("OPENAI_API_KEY not configured in .env file")
 
-        self.openai_client = OpenAI(api_key=self.openai_api_key)
-        self.embedding_model = "text-embedding-3-small"  # 1536 dimensions, cost-effective
+        # Check if using OpenRouter (key starts with sk-or-)
+        if self.openai_api_key.startswith('sk-or-'):
+            print("  Detected OpenRouter API key")
+            self.openai_client = OpenAI(
+                api_key=self.openai_api_key,
+                base_url="https://openrouter.ai/api/v1"
+            )
+            # OpenRouter uses different model names
+            self.embedding_model = "openai/text-embedding-3-small"
+        else:
+            print("  Detected OpenAI API key")
+            self.openai_client = OpenAI(api_key=self.openai_api_key)
+            self.embedding_model = "text-embedding-3-small"  # 1536 dimensions, cost-effective
 
         # Qdrant configuration
         self.qdrant_host = os.getenv('QDRANT_HOST', 'http://localhost:6333')
@@ -136,13 +147,19 @@ class EmbeddingsManager:
                 )
                 points.append(point)
 
-            # Batch upsert to Qdrant
-            self.qdrant_client.upsert(
-                collection_name=self.collection_name,
-                points=points
-            )
+            # Batch upsert to Qdrant (in smaller batches to avoid timeout)
+            batch_size = 50
+            total_stored = 0
+            for i in range(0, len(points), batch_size):
+                batch = points[i:i + batch_size]
+                self.qdrant_client.upsert(
+                    collection_name=self.collection_name,
+                    points=batch
+                )
+                total_stored += len(batch)
+                print(f"  Stored batch {i//batch_size + 1}/{(len(points)-1)//batch_size + 1} ({len(batch)} vectors)")
 
-            print(f"  ✓ Stored {len(points)} embeddings successfully")
+            print(f"  ✓ Stored {total_stored} embeddings successfully")
 
         except Exception as e:
             print(f"  ✗ Error storing embeddings: {e}")
