@@ -49,8 +49,9 @@ export default function ChatWidget() {
     setIsLoading(true);
 
     try {
-      // Call backend API
-      const response = await fetch('http://localhost:8000/chat', {
+      // Call backend API - use environment variable or fallback to localhost
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,9 +82,10 @@ export default function ChatWidget() {
       console.error('Chat error:', error);
 
       // Add error message
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
       const errorMessage = {
         type: 'error',
-        content: `Error: ${error.message}. Make sure the backend server is running at http://localhost:8000`,
+        content: `Error: ${error.message}. Make sure the backend server is running at ${apiUrl}`,
         timestamp: new Date().toISOString()
       };
       setMessages(prev => [...prev, errorMessage]);
