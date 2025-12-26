@@ -1,0 +1,15 @@
+# FastAPI and server dependencies
+fastapi
+uvicorn
+
+# OpenAI LLM integration
+openai
+
+# Vector store
+qdrant-client
+
+# Environment variables
+python-dotenv
+
+# PostgreSQL database (optional, for metadata storage)
+psycopg[binary]
