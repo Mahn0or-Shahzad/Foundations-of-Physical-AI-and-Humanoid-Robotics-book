@@ -52,7 +52,7 @@ export default function ChatWidget() {
       // Call backend API - use environment variable or fallback to Vercel backend
       // Use typeof to safely check if process exists (Docusaurus compatibility)
       const apiUrl = (typeof process !== 'undefined' && process.env?.REACT_APP_API_URL)
-        || 'https://foundations-of-physical-ai-and-huma-one.vercel.app';
+        || 'https://ai-book-dusky-seven.vercel.app';
       const response = await fetch(`${apiUrl}/chat`, {
         method: 'POST',
         headers: {
@@ -85,7 +85,7 @@ export default function ChatWidget() {
 
       // Add error message
       const apiUrl = (typeof process !== 'undefined' && process.env?.REACT_APP_API_URL)
-        || 'https://foundations-of-physical-ai-and-huma-one.vercel.app';
+        || 'https://ai-book-dusky-seven.vercel.app';
       const errorMessage = {
         type: 'error',
         content: `Error: ${error.message}. Make sure the backend server is running at ${apiUrl}`,
