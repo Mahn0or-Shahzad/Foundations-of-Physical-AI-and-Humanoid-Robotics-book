@@ -22,15 +22,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Configure CORS for frontend communication
+# Configure CORS for frontend communication (HF + Vercel)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://localhost:3001",
-        "http://127.0.0.1:3000",
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],  # allow all origins (safe for testing)
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -138,4 +134,7 @@ async def chat(request: ChatRequest):
 # Run with: uvicorn main:app --reload --port 8000
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    import os
+
+    port = int(os.environ.get("PORT", 7860))  # HF uses 7860
+    uvicorn.run(app, host="0.0.0.0", port=port)
