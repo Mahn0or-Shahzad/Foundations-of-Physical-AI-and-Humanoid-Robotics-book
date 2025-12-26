@@ -21,7 +21,7 @@ const config = {
 
   // Custom fields for environment variables
   customFields: {
-    REACT_APP_API_URL: process.env.REACT_APP_API_URL || 'https://mahishahzad-textbook.hf.space',
+    REACT_APP_API_URL: process.env.REACT_APP_API_URL || 'https://foundations-of-physical-ai-and-huma-one.vercel.app',
   },
 
   // Set the production url of your site here
