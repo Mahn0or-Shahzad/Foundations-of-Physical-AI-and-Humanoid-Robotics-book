@@ -1,0 +1,132 @@
+# ==========================================
+# SECURITY: Secret Files (NEVER COMMIT!)
+# ==========================================
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+credentials/
+*secret*
+*credentials*
+
+# API Keys and Tokens
+*_api_key*
+*_token*
+*_secret*
+
+# ==========================================
+# Python
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ==========================================
+# Node.js / Frontend
+# ==========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+/build
+/dist
+/.next
+/.docusaurus
+.cache-loader
+
+# ==========================================
+# Databases & Data
+# ==========================================
+*.db
+*.sqlite
+*.sqlite3
+chroma_db/
+qdrant_storage/
+vector_store/
+*.csv
+*.xlsx
+data/
+
+# ==========================================
+# IDE & Editors
+# ==========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Logs
+# ==========================================
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+
+# ==========================================
+# OS Files
+# ==========================================
+.DS_Store
+Thumbs.db
+desktop.ini
+.Spotlight-V100
+.Trashes
+
+# ==========================================
+# Deployment
+# ==========================================
+.vercel
+.netlify
+
+# ==========================================
+# Temporary Files
+# ==========================================
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*~
+
+# ==========================================
+# AI/ML Specific
+# ==========================================
+*.h5
+*.pkl
+*.pickle
+models/
+checkpoints/
+wandb/
+mlruns/
+
+# ==========================================
+# Documentation (Generated)
+# ==========================================
+.docusaurus/
+.cache/
