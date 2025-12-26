@@ -15,10 +15,5 @@
       "src": "/(.*)",
       "dest": "main.py"
     }
-  ],
-  "env": {
-    "OPENAI_API_KEY": "@openai_api_key",
-    "QDRANT_API_KEY": "@qdrant_api_key",
-    "QDRANT_HOST": "@qdrant_host"
-  }
+  ]
 }
