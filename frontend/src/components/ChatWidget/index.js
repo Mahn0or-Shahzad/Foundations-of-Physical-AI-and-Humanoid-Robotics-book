@@ -50,7 +50,9 @@ export default function ChatWidget() {
 
     try {
       // Call backend API - use environment variable or fallback to localhost
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+      // Use typeof to safely check if process exists (Docusaurus compatibility)
+      const apiUrl = (typeof process !== 'undefined' && process.env?.REACT_APP_API_URL)
+        || 'https://mahishahzad-textbook.hf.space';
       const response = await fetch(`${apiUrl}/chat`, {
         method: 'POST',
         headers: {
@@ -82,7 +84,8 @@ export default function ChatWidget() {
       console.error('Chat error:', error);
 
       // Add error message
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+      const apiUrl = (typeof process !== 'undefined' && process.env?.REACT_APP_API_URL)
+        || 'https://mahishahzad-textbook.hf.space';
       const errorMessage = {
         type: 'error',
         content: `Error: ${error.message}. Make sure the backend server is running at ${apiUrl}`,

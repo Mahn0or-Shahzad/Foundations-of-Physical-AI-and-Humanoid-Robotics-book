@@ -19,6 +19,11 @@ const config = {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
+  // Custom fields for environment variables
+  customFields: {
+    REACT_APP_API_URL: process.env.REACT_APP_API_URL || 'https://mahishahzad-textbook.hf.space',
+  },
+
   // Set the production url of your site here
   url: 'https://foundations-of-physical-ai-and-huma.vercel.app/',
   // Set the /<baseUrl>/ pathname under which your site is served
