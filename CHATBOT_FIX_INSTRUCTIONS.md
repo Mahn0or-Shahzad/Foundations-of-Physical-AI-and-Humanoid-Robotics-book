@@ -1,0 +1,8 @@
+# AI Book Assistant – Fix Instructions
+
+## Environment Variables (DO NOT PUT REAL KEYS HERE)
+
+```env
+OPENAI_API_KEY=YOUR_OPENAI_API_KEY
+QDRANT_API_KEY=YOUR_QDRANT_API_KEY
+QDRANT_HOST=YOUR_QDRANT_HOST
